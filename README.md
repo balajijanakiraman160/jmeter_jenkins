@@ -1,1 +1,1 @@
-"# jmeter_jenkins" run test
+"# jmeter_jenkins" run test jmeter
