@@ -11,7 +11,7 @@ pipeline{
         bat '''
         if exist "result.jtl" del /f /q/ "result.jtl"
         if exist "html-report" rmdir /s /q "html-report"
-        "C:\Users\Kiaq_Lap_160\AppData\Local\Programs\DockerDesktop\resources\bin\docker.exe" run --rm ^ -v "%WORKSPACE%:/results" ^
+        "C:/Users/Kiaq_Lap_160/AppData/Local/Programs/DockerDesktop/resources/bin/docker.exe" run --rm ^ -v "%WORKSPACE%:/results" ^
         products-jmeter ^ -n -t "/test/blazedemo Performance Test.jmx" ^ -l /results/result.jtl ^ -e -o /results/html-report
         '''
 
