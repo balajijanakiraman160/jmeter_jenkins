@@ -3,7 +3,7 @@ pipeline{
     stages{ 
          stage('Build Docker Image'){
       steps{
-        bat '"C:\\Users\\admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t products-jmeter .'
+        bat '"C:\Users\Kiaq_Lap_160\AppData\Local\Programs\DockerDesktop\resources\bin\docker.exe" build -t products-jmeter .'
       }
     }
         stage('Run JMeter Test'){
