@@ -21,7 +21,7 @@ pipeline{
         stage('Publish HTML Report'){
             steps{
                publishHTML([
-                   reportDir: 'html-report',
+                   reportDir: 'new-html-report',
                    reportFiles: 'index.html',
                    reportName: 'jmeter performace report',
                    keepAll: true,
