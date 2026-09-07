@@ -1,13 +1,20 @@
 pipeline{
     agent any
-    stages{
-        stage('Run Jmeter Test'){
-            steps{
-                bat '''
-                if exist "result.jtl" del /f /q "result.jtl"
-                if exist "html-report" rmdir /s /q "html-report"
-                "C:\\apache-jmeter-5.6.3\\apache-jmeter-5.6.3\\bin\\jmeter.bat" -n -t "blazedemo Performance Test.jmx" -l "result.jtl" -e -o "html-report"
-                '''
+    stages{ 
+         stage('Build Docker Image'){
+      steps{
+        bat '"C:\\Users\\admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t products-jmeter .'
+      }
+    }
+        stage('Run JMeter Test'){
+      steps{
+        bat '''
+        if exist "result.jtl" del /f /q/ "result.jtl"
+        if exist "html-report" rmdir /s /q "html-report"
+        "C:/Users/admin/AppData/Local/Programs/DockerDesktop/resources/bin/docker.exe" run --rm ^ -v "%WORKSPACE%:/results" ^
+        products-jmeter ^ -n -t "/test/blazedemo Performance Test.jmx" ^ -l /results/result.jtl ^ -e -o /results/html-report
+        '''
+
             }
         }
         stage('Publish HTML Report'){
