@@ -9,11 +9,11 @@ pipeline{
         stage('Run JMeter Test'){
       steps{
         bat '''
-        if exist "result.jtl" del /f /q/ "result.jtl"
-        if exist "html-report" rmdir /s /q "html-report"
+        if exist "result.jtl" del /f /q/ "new-result.jtl"
+        if exist "html-report" rmdir /s /q "new-html-report"
         dir
         "C:/Users/Kiaq_Lap_160/AppData/Local/Programs/DockerDesktop/resources/bin/docker.exe" run --rm ^ -v "%WORKSPACE%:/results" ^
-        products-jmeter ^ -n -t "/test/blazedemo Performance Test.jmx" ^ -f -l /results/result.jtl ^ -e -o /results/html-report
+        products-jmeter ^ -n -t "/test/blazedemo Performance Test.jmx" ^ -l /results/new-result.jtl ^ -e -o /results/new-html-report
         '''
 
             }
